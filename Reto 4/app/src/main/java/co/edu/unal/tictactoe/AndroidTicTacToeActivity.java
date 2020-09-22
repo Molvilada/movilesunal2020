@@ -4,10 +4,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.media.tv.TvView;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -33,6 +35,7 @@ public class AndroidTicTacToeActivity extends AppCompatActivity {
     private int TIES = 0;
     static final int DIALOG_DIFFICULTY_ID = 0;
     static final int DIALOG_QUIT_ID = 1;
+    static final int DIALOG_ABOUT_ID = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +82,13 @@ public class AndroidTicTacToeActivity extends AppCompatActivity {
                 return true;
             case R.id.ai_difficulty:
                 showDialog(DIALOG_DIFFICULTY_ID);
+                startNewGame();
                 return true;
             case R.id.quit:
                 showDialog(DIALOG_QUIT_ID);
+                return true;
+            case R.id.about:
+                showDialog(DIALOG_ABOUT_ID);
                 return true;
         }
         return false;
@@ -119,9 +126,10 @@ public class AndroidTicTacToeActivity extends AppCompatActivity {
                         });
                 dialog = builder.create();
 
+
                 break;
 
-                case DIALOG_QUIT_ID:
+            case DIALOG_QUIT_ID:
                 // Create the quit confirmation dialog
 
                 builder.setMessage(R.string.quit_question)
@@ -132,6 +140,16 @@ public class AndroidTicTacToeActivity extends AppCompatActivity {
                             }
                         })
                         .setNegativeButton(R.string.no, null);
+                dialog = builder.create();
+
+                break;
+
+            case DIALOG_ABOUT_ID:
+                Context context = getApplicationContext();
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.about_dialog, null);
+                builder.setView(layout);
+                builder.setPositiveButton("OK", null);
                 dialog = builder.create();
 
                 break;
@@ -204,11 +222,13 @@ public class AndroidTicTacToeActivity extends AppCompatActivity {
                     mInfoTextView.setText(R.string.result_human_wins);
                     HUMAN_WON += 1;
                     mHumanWon.setText(String.valueOf(HUMAN_WON));
+                    blockButtons(mBoardButtons);
                 }
                 else{
                     mInfoTextView.setText(R.string.result_computer_wins);
                     ANDROID_WON += 1;
                     mAndroidWon.setText(String.valueOf(ANDROID_WON));
+                    blockButtons(mBoardButtons);
                 }
 
             }
@@ -225,6 +245,12 @@ public class AndroidTicTacToeActivity extends AppCompatActivity {
             mBoardButtons[location].setTextColor(Color.rgb(0, 200, 0));
         else
             mBoardButtons[location].setTextColor(Color.rgb(200, 0, 0));
+    }
+
+    private void blockButtons(Button[] mBoardButtons){
+        for(int i = 0; i < 9; i++){
+            mBoardButtons[i].setEnabled(false);
+        }
     }
 
 

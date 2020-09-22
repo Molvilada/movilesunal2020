@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="230dp"
+        android:src="@drawable/icon"
+        android:layout_marginTop="20dp"/>
+    <TextView android:id="@+id/appName"    	           	android:layout_width="fill_parent"
+        android:layout_height="wrap_content"    			android:text="Tic-Tac-Toe"
+        android:gravity="center_horizontal" 		      android:layout_marginTop="5dp"
+        android:textSize="20dp"
+        />
+    <TextView android:id="@+id/autorName"    	           	android:layout_width="fill_parent"
+        android:layout_height="wrap_content"    			android:text="By: Laura Molina"
+        android:gravity="center_horizontal"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"/>
+    <TextView android:id="@+id/description"    	           	android:layout_width="fill_parent"
+        android:layout_height="wrap_content"    			android:text="Choose from one to three difficulty levels. Don't let Android beat you"
+        android:gravity="start"
+        android:textSize="15dp"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>
