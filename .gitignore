@@ -35,17 +35,3 @@ local.properties
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-Reto 8/node_modules/**/*
-Reto 8/.expo/*
-npm-debug.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-*.orig.*
-Reto 8/web-build/
-
-# macOS
-.DS_Store
